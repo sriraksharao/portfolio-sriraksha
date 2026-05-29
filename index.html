@@ -97,17 +97,30 @@ html[data-theme="light"] .theme-btn .ic-moon { display: none; }
 
 /* ── HERO ────────────────────────────────────────────── */
 #hero {
-  min-height: 100vh; display: flex; flex-direction: column;
-  justify-content: space-between;
+  height: 100vh; display: flex; flex-direction: column;
   padding: 0 48px; padding-top: 58px;
   position: relative; overflow: hidden;
 }
 .hero-top {
-  padding-top: 56px;
+  flex: 2.4;
+  padding-top: 40px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 48px;
+  padding-bottom: 32px;
   opacity: 0; transform: translateY(12px);
   transition: opacity 0.6s 0.3s, transform 0.6s 0.3s;
 }
+.hero-lower {
+  flex: 1;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
 .hero-top.show { opacity: 1; transform: none; }
+.hero-taglines {
+  padding-bottom: 6px;
+  font-family: var(--f-serif); font-size: clamp(16px, 1.4vw, 21px);
+  font-weight: 300; letter-spacing: -0.01em; color: var(--mid); line-height: 1.7;
+}
+.hero-taglines strong { font-weight: 400; color: var(--text); }
 .hero-eyebrow {
   font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--acc); margin-bottom: 24px;
@@ -125,13 +138,27 @@ html[data-theme="light"] .theme-btn .ic-moon { display: none; }
 #hn2 { transition-delay: 0.22s; color: var(--acc); font-style: italic; }
 .hero-name.show { transform: translateY(0); }
 .hero-bottom {
-  padding-bottom: 40px; border-top: 1px solid var(--bdr); padding-top: 24px;
-  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  padding-bottom: 20px; border-top: 1px solid var(--bdr); padding-top: 20px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  align-items: end; gap: 32px;
   opacity: 0; transition: opacity 0.6s 0.7s;
 }
 .hero-bottom.show { opacity: 1; }
-.hero-desc { max-width: 680px; font-size: 14px; font-weight: 300; color: var(--mid); line-height: 1.7; }
-.hero-desc strong { color: var(--text); font-weight: 400; }
+.hero-desc { font-size: 13.5px; font-weight: 300; color: var(--mid); line-height: 1.75; }
+.hero-desc strong { color: var(--text); font-weight: 500; }
+.hero-mid { display: flex; flex-direction: column; gap: 12px; margin: 0 auto; }
+.hero-mid-label {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--dim);
+}
+.hero-mid-items { display: flex; flex-direction: column; gap: 5px; }
+.hero-mid-items span { font-size: 12px; font-weight: 300; color: var(--mid); }
+.hero-links { display: flex; gap: 16px; margin-top: 4px; }
+.hero-links a {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--acc); transition: opacity 0.2s;
+}
+.hero-links a:hover { opacity: 0.7; }
 .scroll-hint {
   display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0;
 }
@@ -441,23 +468,39 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-top" id="hero-top">
-    <p class="hero-eyebrow">Software Engineer · AI/ML Researcher · UC San Diego</p>
-    <div class="hero-name-wrap"><span class="hero-name" id="hn1">Sriraksha</span></div>
-    <div class="hero-name-wrap"><span class="hero-name" id="hn2">Rajesh Rao</span></div>
+    <!-- LEFT: name -->
+    <div>
+      <p class="hero-eyebrow">Software Engineer · AI/ML Researcher · UC San Diego</p>
+      <div class="hero-name-wrap"><span class="hero-name" id="hn1">Sriraksha</span></div>
+      <div class="hero-name-wrap"><span class="hero-name" id="hn2">Rajesh Rao</span></div>
+    </div>
+    <!-- RIGHT: taglines -->
+    <div class="hero-taglines">
+      <strong>I build software that scales.</strong><br><br>
+      Sometimes that's a <strong>distributed backend</strong>,<br>
+      sometimes it's an <strong>AI system</strong>,<br>
+      and sometimes it's figuring out why a perfectly working system stopped working five minutes ago.
+    </div>
   </div>
 
+  <div class="hero-lower">
   <div class="hero-bottom" id="hero-bottom">
     <p class="hero-desc">
-      I build software that scales.<br><br>
-
-Sometimes it's a <strong>distributed backend</strong>,<br>
- sometimes it's an <strong>AI system</strong>, <br>
- and sometimes it's figuring out why a perfectly working system stopped working five minutes ago.
-
-      <!-- Building <strong>systems that scale</strong> — from distributed backends processing
-      1M+ packets/sec to AI pipelines grounded in clinical data and insurance policy.
-      Currently pursuing <strong>MS Computer Science</strong> at UC San Diego. -->
+      I build things at the intersection of distributed systems, AI, and caffeine-fueled curiosity — from processing network packets, architecting cloud-native microservices, or teaching LLMs to make sense of messy real-world data, I enjoy turning complex problems into elegant solutions.
     </p>
+    <div class="hero-mid">
+      <p class="hero-mid-label">Currently</p>
+      <div class="hero-mid-items">
+        <span>Software Dev - Relevance Labs</span>
+        <span>Grad Researcher - CAIDA, SDSC</span>
+        <span>MS CS - UC San Diego</span>
+      </div>
+      <div class="hero-links">
+        <a href="mailto:srajeshrao@ucsd.edu">Email ↗</a>
+        <a href="https://github.com/sriraksharao" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/sriraksha-r-rao/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
     <div class="scroll-hint">
       <span class="scroll-hint-text">Scroll to explore</span>
       <span class="scroll-hint-arrow">∨</span>
@@ -499,6 +542,7 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
       <span class="marquee-item">Rust<span class="dot"></span></span>
     </div>
   </div>
+  </div><!-- end hero-lower -->
 </section>
 
 <!-- ABOUT -->
@@ -508,8 +552,8 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
     <div>
       <p class="about-intro">A systems engineer who builds AI, and an AI researcher who ships <em>production-grade</em> code.</p>
       <div class="about-body">
-        <p>I'm pursuing my <strong>MS in Computer Science at UC San Diego</strong> (GPA 3.8), where I split my time between two roles: Software Developer at <strong>Relevance Labs</strong> — building LLM-powered insurance agents with LangGraph and RAG — and Graduate Researcher at <strong>CAIDA, SDSC</strong>, where I re-architected a network packet analysis engine from legacy C to concurrent Go, hitting 1M+ packets per second.</p>
-        <p>My engineering foundation is in backend systems. At <strong>Comviva Technologies</strong> I owned carrier-grade Java microservices for a CPaaS platform sustaining 5,000+ SMS/sec, cut API latency by 30% with a Redis routing cache, and eliminated production race conditions across the Voice Processor pipeline. I'm at home writing kernel-adjacent Go, orchestrating Kubernetes deployments, or fine-tuning a BioBERT model on clinical datasets.</p>
+        <p>I'm pursuing my <strong>MS in Computer Science at UC San Diego</strong> (GPA 3.8), where I split my time between two roles: Software Developer at <strong>Relevance Labs</strong> — building LLM-powered insurance agents with LangGraph and RAG — and Graduate Researcher at <strong>CAIDA, SDSC</strong>, where I re-architected a network packet analysis engine from legacy C to concurrent Go, large packet load per second.</p>
+        <p>My engineering foundation is in backend systems. At <strong>Comviva Technologies</strong> I owned Java microservices for a CPaaS platform sustaining high message load, cut API latency by 30% with a Redis routing cache, and eliminated production race conditions across the Voice Processor pipeline. I'm at home writing kernel-adjacent Go, orchestrating Kubernetes deployments, or fine-tuning a BioBERT model on clinical datasets.</p>
         <p>I'm drawn to problems that sit at the intersection of <strong>infrastructure and intelligence</strong> — where getting the engineering right is half the problem, and the other half is making the model actually useful.</p>
       </div>
     </div>
@@ -538,20 +582,25 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
           <span class="exp-t-co">Relevance Labs</span>
           <span class="exp-t-sub">Software Developer · Apr 2026 – Present · San Diego, CA</span>
         </div>
-        <span class="exp-t-icon">+</span>
-      </button>
-      <div class="exp-body"><div class="exp-body-inner">
-        <div><div class="exp-bullets">
-          <p class="exp-bullet">Architected AI-powered insurance assistant using FastAPI, Next.js, LangGraph, Pinecone, Supabase, and OpenRouter.</p>
-          <p class="exp-bullet">Designed intent-driven agent pipeline routing queries to SQL, vector retrieval, analytics, and guided workflows.</p>
-          <p class="exp-bullet">Built RAG system embedding policy documents into Pinecone for grounded, contextual responses.</p>
-          <p class="exp-bullet">JWT auth, session management, chat history persistence, and stateful user context tracking.</p>
-        </div></div>
         <div><div class="exp-chips">
           <span class="exp-chip">FastAPI</span><span class="exp-chip">Next.js</span>
           <span class="exp-chip">LangGraph</span><span class="exp-chip">Pinecone</span>
           <span class="exp-chip">RAG</span><span class="exp-chip">Supabase</span>
         </div></div>
+        <span class="exp-t-icon">+</span>
+      </button>
+      <div class="exp-body"><div class="exp-body-inner">
+        <div><div class="exp-bullets">
+          <p class="exp-bullet">Architected <strong>AI-powered insurance assistant</strong> using <strong>FastAPI, Next.js, LangGraph, Pinecone, Supabase, and OpenRouter.</strong></p>
+          <p class="exp-bullet">Designed <strong>intent-driven agent pipeline</strong> routing queries to SQL, vector retrieval, analytics, and guided workflows.</p>
+          <p class="exp-bullet">Built <strong>RAG system</strong> embedding policy documents into Pinecone for grounded, contextual responses.</p>
+          <p class="exp-bullet">JWT auth, session management, chat history persistence, and stateful user context tracking.</p>
+        </div></div>
+        <!-- <div><div class="exp-chips">
+          <span class="exp-chip">FastAPI</span><span class="exp-chip">Next.js</span>
+          <span class="exp-chip">LangGraph</span><span class="exp-chip">Pinecone</span>
+          <span class="exp-chip">RAG</span><span class="exp-chip">Supabase</span>
+        </div></div> -->
       </div></div>
     </div>
 
@@ -564,6 +613,10 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
           <span class="exp-t-co">CAIDA, SDSC</span>
           <span class="exp-t-sub">Software Developer – Graduate Researcher · Apr 2026 – Present · San Diego, CA</span>
         </div>
+        <div><div class="exp-chips">
+          <span class="exp-chip">Go</span><span class="exp-chip">OpenStack Swift</span>
+          <span class="exp-chip">Network Analysis</span><span class="exp-chip">Concurrency</span>
+        </div></div>
         <span class="exp-t-icon">+</span>
       </button>
       <div class="exp-body"><div class="exp-body-inner">
@@ -572,10 +625,10 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
           <p class="exp-bullet">Built highly concurrent, production-grade ingestion pipelines with deep parallelism.</p>
           <p class="exp-bullet">Retrieves packet captures from OpenStack Swift object storage and extracts network features at scale.</p>
         </div></div>
-        <div><div class="exp-chips">
+        <!-- <div><div class="exp-chips">
           <span class="exp-chip">Go</span><span class="exp-chip">OpenStack Swift</span>
           <span class="exp-chip">Network Analysis</span><span class="exp-chip">Concurrency</span>
-        </div></div>
+        </div></div> -->
       </div></div>
     </div>
 
@@ -588,6 +641,10 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
           <span class="exp-t-co">Scale AI</span>
           <span class="exp-t-sub">Gen AI Research Intern · Jul 2025 – Sep 2025 · San Diego, CA</span>
         </div>
+        <div><div class="exp-chips">
+          <span class="exp-chip">BioBERT</span><span class="exp-chip">PyTorch DDP</span>
+          <span class="exp-chip">NLP</span><span class="exp-chip">Python</span>
+        </div></div>
         <span class="exp-t-icon">+</span>
       </button>
       <div class="exp-body"><div class="exp-body-inner">
@@ -596,10 +653,10 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
           <p class="exp-bullet">Preprocessing, negative sample generation, and CPR label mapping for chemical–gene classification.</p>
           <p class="exp-bullet">Scaled training with PyTorch DDP (multi-GPU), warmup/decay LR, and checkpointing.</p>
         </div></div>
-        <div><div class="exp-chips">
+        <!-- <div><div class="exp-chips">
           <span class="exp-chip">BioBERT</span><span class="exp-chip">PyTorch DDP</span>
           <span class="exp-chip">NLP</span><span class="exp-chip">Python</span>
-        </div></div>
+        </div></div> -->
       </div></div>
     </div>
 
@@ -612,6 +669,10 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
           <span class="exp-t-co">UCSD Health — Gabriel AI Lab</span>
           <span class="exp-t-sub">Machine Learning Engineer · Jun 2025 – Sep 2025 · San Diego, CA</span>
         </div>
+        <div><div class="exp-chips">
+          <span class="exp-chip">BioBERT</span><span class="exp-chip">LSTM</span>
+          <span class="exp-chip">MIMIC-III</span><span class="exp-chip">Clinical NLP</span>
+        </div></div>
         <span class="exp-t-icon">+</span>
       </button>
       <div class="exp-body"><div class="exp-body-inner">
@@ -620,10 +681,10 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
           <p class="exp-bullet">GloVe and BERT embeddings for unstructured medical text preprocessing.</p>
           <p class="exp-bullet">Trained and fine-tuned Logistic Regression, LSTM, and bio-BERT mortality prediction models.</p>
         </div></div>
-        <div><div class="exp-chips">
+        <!-- <div><div class="exp-chips">
           <span class="exp-chip">BioBERT</span><span class="exp-chip">LSTM</span>
           <span class="exp-chip">MIMIC-III</span><span class="exp-chip">Clinical NLP</span>
-        </div></div>
+        </div></div> -->
       </div></div>
     </div>
 
@@ -636,6 +697,11 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
           <span class="exp-t-co">Comviva Technologies</span>
           <span class="exp-t-sub">Software Engineer · Aug 2023 – Sep 2024 · Bengaluru, India</span>
         </div>
+        <div><div class="exp-chips">
+          <span class="exp-chip">Java</span><span class="exp-chip">Kafka</span>
+          <span class="exp-chip">Kubernetes</span><span class="exp-chip">Redis</span>
+          <span class="exp-chip">Grafana</span><span class="exp-chip">Oracle</span>
+        </div></div>
         <span class="exp-t-icon">+</span>
       </button>
       <div class="exp-body"><div class="exp-body-inner">
@@ -645,11 +711,11 @@ Sometimes it's a <strong>distributed backend</strong>,<br>
           <p class="exp-bullet">Reduced API latency 30% (200ms → 140ms) via Redis in-memory routing cache.</p>
           <p class="exp-bullet">Eliminated race conditions in Voice Processor, cutting production crashes by 95%.</p>
         </div></div>
-        <div><div class="exp-chips">
+        <!-- <div><div class="exp-chips">
           <span class="exp-chip">Java</span><span class="exp-chip">Kafka</span>
           <span class="exp-chip">Kubernetes</span><span class="exp-chip">Redis</span>
           <span class="exp-chip">Grafana</span><span class="exp-chip">Oracle</span>
-        </div></div>
+        </div></div> -->
       </div></div>
     </div>
 
