@@ -98,39 +98,20 @@ html[data-theme="light"] .theme-btn .ic-moon { display: none; }
 /* ── HERO ────────────────────────────────────────────── */
 #hero {
   min-height: 100vh; display: flex; flex-direction: column;
-  justify-content: flex-end; padding: 0 48px; padding-top: 58px;
+  justify-content: space-between;
+  padding: 0 48px; padding-top: 58px;
   position: relative; overflow: hidden;
 }
-.hero-body { flex: 1; display: flex; flex-direction: row; align-items: flex-end; justify-content: space-between; padding-bottom: 40px; gap: 32px; }
-.hero-name-block { display: flex; flex-direction: column; }
-.scroll-hint {
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-  padding-bottom: 6px; flex-shrink: 0;
-  opacity: 0; transition: opacity 0.6s ease 1.1s;
-}
-.scroll-hint.show { opacity: 1; }
-.scroll-hint-text {
-  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--mid);
-  writing-mode: vertical-rl; transform: rotate(180deg);
-}
-.scroll-hint-line {
-  width: 1px; height: 56px;
-  background: linear-gradient(to bottom, var(--acc), transparent);
-  animation: scrollDrop 1.8s ease-in-out infinite;
-}
-@keyframes scrollDrop {
-  0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
-  50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
-  100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
-}
-.hero-eyebrow {
-  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--acc); margin-bottom: 20px;
-  opacity: 0; transform: translateY(10px);
+.hero-top {
+  padding-top: 56px;
+  opacity: 0; transform: translateY(12px);
   transition: opacity 0.6s 0.3s, transform 0.6s 0.3s;
 }
-.hero-eyebrow.show { opacity: 1; transform: none; }
+.hero-top.show { opacity: 1; transform: none; }
+.hero-eyebrow {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--acc); margin-bottom: 24px;
+}
 .hero-name-wrap { overflow: hidden; }
 .hero-name {
   font-family: var(--f-serif);
@@ -143,16 +124,32 @@ html[data-theme="light"] .theme-btn .ic-moon { display: none; }
 #hn1 { transition-delay: 0.1s; }
 #hn2 { transition-delay: 0.22s; color: var(--acc); font-style: italic; }
 .hero-name.show { transform: translateY(0); }
-.hero-meta {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  margin-top: 36px; padding-bottom: 52px;
-  border-top: 1px solid var(--bdr); padding-top: 24px;
-  flex-wrap: wrap; gap: 20px;
+.hero-bottom {
+  padding-bottom: 40px; border-top: 1px solid var(--bdr); padding-top: 24px;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
   opacity: 0; transition: opacity 0.6s 0.7s;
 }
-.hero-meta.show { opacity: 1; }
-.hero-desc { max-width: 420px; font-size: 14px; font-weight: 300; color: var(--mid); line-height: 1.7; }
+.hero-bottom.show { opacity: 1; }
+.hero-desc { max-width: 400px; font-size: 14px; font-weight: 300; color: var(--mid); line-height: 1.7; }
 .hero-desc strong { color: var(--text); font-weight: 400; }
+.scroll-hint {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0;
+}
+.scroll-hint {
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+}
+.scroll-hint-text {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--mid);
+}
+.scroll-hint-arrow {
+  font-size: 12px; color: var(--acc);
+  animation: arrowBob 1.6s ease-in-out infinite;
+}
+@keyframes arrowBob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(4px); }
+}
 .marquee-outer {
   overflow: hidden; border-top: 1px solid var(--bdr); padding: 18px 0;
   opacity: 0; transition: opacity 0.6s 0.85s;
@@ -236,6 +233,11 @@ section:nth-child(even) { background: var(--bg2); }
 }
 .exp-item.open .exp-trigger::before { transform: scaleY(1); }
 .exp-t-main { flex: 1; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.exp-logo {
+  width: 44px; height: 44px; border-radius: 8px; flex-shrink: 0;
+  overflow: hidden; border: 1px solid var(--bdr); background: #fff;
+}
+.exp-logo img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .exp-t-co {
   font-family: var(--f-serif);
   font-size: clamp(22px, 3vw, 38px); font-weight: 300;
@@ -437,22 +439,21 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-body">
-    <p class="hero-eyebrow" id="hero-eyebrow">Software Engineer · AI/ML Researcher · UC San Diego</p>
-    <div class="hero-name-block">
-      <div class="hero-name-wrap"><span class="hero-name" id="hn1">Sriraksha</span></div>
-      <div class="hero-name-wrap"><span class="hero-name" id="hn2">Rajesh Rao</span></div>
-    </div>
-    <div class="scroll-hint" id="scroll-hint">
-      <div class="scroll-hint-line"></div>
+  <div class="hero-top" id="hero-top">
+    <p class="hero-eyebrow">Software Engineer · AI/ML Researcher · UC San Diego</p>
+    <div class="hero-name-wrap"><span class="hero-name" id="hn1">Sriraksha</span></div>
+    <div class="hero-name-wrap"><span class="hero-name" id="hn2">Rajesh Rao</span></div>
+  </div>
+
+  <div class="hero-bottom" id="hero-bottom">
+    <p class="hero-desc">
+      Building <strong>systems that scale</strong> — from distributed backends processing
+      1M+ packets/sec to AI pipelines grounded in clinical data and insurance policy.
+      Currently pursuing <strong>MS Computer Science</strong> at UC San Diego.
+    </p>
+    <div class="scroll-hint">
       <span class="scroll-hint-text">Scroll to explore</span>
-    </div>
-    <div class="hero-meta" id="hero-meta" style="width:100%;flex-basis:100%;">
-      <p class="hero-desc">
-        Building <strong>systems that scale</strong> — from distributed backends processing
-        1M+ packets/sec to AI pipelines grounded in clinical data and insurance policy.
-        Currently pursuing <strong>MS Computer Science</strong> at UC San Diego.
-      </p>
+      <span class="scroll-hint-arrow">∨</span>
     </div>
   </div>
   <div class="marquee-outer" id="marquee-outer">
@@ -523,6 +524,9 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
 
     <div class="exp-item">
       <button class="exp-trigger">
+        <div class="exp-logo">
+          <img src="https://cdn.prod.website-files.com/65772d0624e0fb0222a3bf74/666857459ae61bfdb66b093b_RelevancLab_Facebook_Banner_R1.jpg" alt="Relevance Labs" />
+        </div>
         <div class="exp-t-main">
           <span class="exp-t-co">Relevance Labs</span>
           <span class="exp-t-sub">Software Developer · Apr 2026 – Present · San Diego, CA</span>
@@ -546,6 +550,9 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
 
     <div class="exp-item">
       <button class="exp-trigger">
+        <div class="exp-logo">
+          <img src="https://media.licdn.com/dms/image/v2/C560BAQFyBRaec-CRjg/company-logo_200_200/company-logo_200_200/0/1630609911530?e=2147483647&v=beta&t=7RuIvg9YRJz8lHxD8W4EPnsDtu1SiE5ewIiI2MvKmp0" alt="CAIDA" />
+        </div>
         <div class="exp-t-main">
           <span class="exp-t-co">CAIDA, SDSC</span>
           <span class="exp-t-sub">Software Developer – Graduate Researcher · Apr 2026 – Present · San Diego, CA</span>
@@ -567,6 +574,9 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
 
     <div class="exp-item">
       <button class="exp-trigger">
+        <div class="exp-logo">
+          <img src="https://media.licdn.com/dms/image/v2/D5622AQG6I1fshRnm9g/feedshare-shrink_800/B56ZwFTKpYHAAg-/0/1769615436571?e=2147483647&v=beta&t=a5yUYEmQ0qS323A6LBokmUnr-nOeqaucMqM6JAn6mJY" alt="Scale AI" />
+        </div>
         <div class="exp-t-main">
           <span class="exp-t-co">Scale AI</span>
           <span class="exp-t-sub">Gen AI Research Intern · Jul 2025 – Sep 2025 · San Diego, CA</span>
@@ -588,6 +598,9 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
 
     <div class="exp-item">
       <button class="exp-trigger">
+        <div class="exp-logo">
+          <img src="https://www.brainsway.com/wp-content/uploads/2017/12/UC-San-Diego-Health.jpg" alt="UCSD Health" />
+        </div>
         <div class="exp-t-main">
           <span class="exp-t-co">UCSD Health — Gabriel AI Lab</span>
           <span class="exp-t-sub">Machine Learning Engineer · Jun 2025 – Sep 2025 · San Diego, CA</span>
@@ -609,6 +622,9 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
 
     <div class="exp-item">
       <button class="exp-trigger">
+        <div class="exp-logo">
+          <img src="https://mma.prnewswire.com/media/995982/Comviva_Logo.jpg?p=facebook" alt="Comviva" />
+        </div>
         <div class="exp-t-main">
           <span class="exp-t-co">Comviva Technologies</span>
           <span class="exp-t-sub">Software Engineer · Aug 2023 – Sep 2024 · Bengaluru, India</span>
@@ -898,16 +914,15 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
 
   // reveal
   setTimeout(function () { document.body.classList.add('ready'); document.getElementById('nav').classList.add('show'); }, 80);
-  setTimeout(function () { document.getElementById('hero-eyebrow').classList.add('show'); }, 380);
+  setTimeout(function () { document.getElementById('hero-top').classList.add('show'); }, 300);
   setTimeout(function () {
     document.getElementById('hn1').classList.add('show');
-    setTimeout(function () { document.getElementById('hn2').classList.add('show'); }, 100);
-  }, 480);
+    setTimeout(function () { document.getElementById('hn2').classList.add('show'); }, 120);
+  }, 420);
   setTimeout(function () {
-    document.getElementById('hero-meta').classList.add('show');
+    document.getElementById('hero-bottom').classList.add('show');
     document.getElementById('marquee-outer').classList.add('show');
-    document.getElementById('scroll-hint').classList.add('show');
-  }, 680);
+  }, 700);
 
   // project accordion
   document.querySelectorAll('.proj-row').forEach(function (row) {
