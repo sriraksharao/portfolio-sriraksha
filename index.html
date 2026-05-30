@@ -351,6 +351,14 @@ html[data-theme="light"] .proj-row.open  .pchip { border-color: rgba(181,114,26,
 }
 html[data-theme="light"] .proj-link { border-color: rgba(181,114,26,0.4); }
 .proj-link:hover { background: var(--hover); }
+.proj-gh {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  border: 1px solid var(--bdr); color: var(--dim);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, color 0.2s;
+}
+.proj-gh:hover { border-color: var(--acc); color: var(--acc); }
+.proj-gh svg { width: 13px; height: 13px; }
 
 /* ── SKILLS ──────────────────────────────────────────── */
 .skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; margin-top: 56px; }
@@ -437,13 +445,27 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
   .exp-trigger::before { left: -24px; }
   .edu-card { flex-direction: column; padding: 28px 24px; }
   .edu-logo { width: 120px; height: 120px; }
+  #hero { padding: 0 24px; padding-top: 58px; height: auto; min-height: 100vh; }
+  .hero-top { grid-template-columns: 1fr; gap: 28px; flex: none; padding-bottom: 24px; }
+  .hero-lower { flex: none; }
+  .hero-bottom { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {
+  #hero { min-height: 100svh; }
+  .hero-top { grid-template-columns: 1fr; }
+  .hero-bottom { grid-template-columns: 1fr; gap: 20px; }
+  .hero-name { font-size: clamp(48px, 13vw, 72px); }
+  .hero-taglines { font-size: 14px; }
   .proj-chips-inline { display: none; }
-  .proj-body-inner { padding-left: 0; }
-  .nav-r { gap: 16px; }
+  .proj-body-inner { padding-left: 0; flex-direction: column; }
+  .proj-head { gap: 12px; padding: 18px 0; }
+  .proj-title { font-size: clamp(18px, 5vw, 26px); }
+  .exp-logo { width: 44px; height: 44px; padding: 4px; }
+  .exp-t-co { font-size: clamp(18px, 5vw, 26px); }
+  .nav-r { gap: 12px; }
   .nav-r a { display: none; }
   .nav-r a:last-of-type { display: block; }
+  .sec-heading { font-size: clamp(36px, 9vw, 56px); }
 }
 </style>
 </head>
@@ -677,8 +699,8 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
       </button>
       <div class="exp-body"><div class="exp-body-inner">
         <div><div class="exp-bullets">
-          <p class="exp-bullet">Predicted ICU patient mortality from clinical notes of 60,000 ICU stays (MIMIC-III).</p>
-          <p class="exp-bullet"><strong>GloVe and ERT</strong> embeddings for unstructured medical text preprocessing.</p>
+          <p class="exp-bullet">Predicted <strong>ICU patient mortality</strong> from clinical notes of <strong>60,000 ICU stays</strong> (MIMIC-III).</p>
+          <p class="exp-bullet"><strong>GloVe and BERT embeddings</strong> for unstructured medical text preprocessing.</p>
           <p class="exp-bullet">Trained and fine-tuned <strong>Logistic Regression, LSTM, and bio-BERT</strong> mortality prediction models.</p>
         </div></div>
         <!-- <div><div class="exp-chips">
@@ -707,7 +729,7 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
       <div class="exp-body"><div class="exp-body-inner">
         <div><div class="exp-bullets">
           <p class="exp-bullet">Owned <strong>Java microservices</strong> for the Voice module of Comviva NGAGE CPaaS platform.</p>
-          <p class="exp-bullet">Carrier-grade backend sustaining 5,000+ SMS/sec with Kafka async pipelines.</p>
+          <p class="exp-bullet">Carrier-grade backend sustaining <strong>5,000+ SMS/sec</strong> with <strong>Kafka async pipelines</strong>.</p>
           <p class="exp-bullet"><strong>Reduced API latency</strong> 30% (200ms → 140ms) via <strong>Redis in-memory routing cache.</strong></p>
           <p class="exp-bullet"><strong>Eliminated race conditions</strong> in Voice Processor, cutting production crashes by 95%.</p>
         </div></div>
@@ -733,62 +755,62 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
         <span class="proj-num">01</span>
         <span class="proj-title">TritonTube</span>
         <div class="proj-chips-inline"><span class="pchip">Go</span><span class="pchip">gRPC</span><span class="pchip">etcd</span><span class="pchip">AWS</span></div>
+        <a class="proj-gh" href="https://github.com/sriraksharao/triton-tube" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
         <span class="proj-arr">↗</span>
       </div>
       <div class="proj-body"><div class="proj-body-inner">
         <div>
           <p class="proj-meta">Distributed Systems · 2025</p>
-          <p class="proj-desc">Fault-tolerant distributed video platform with adaptive MPEG-DASH streaming. Content storage uses gRPC with consistent hashing for scalable file distribution and seamless node migration. 3-node etcd cluster on AWS EC2 validates RAFT-based leader election under simulated failures.</p>
+          <p class="proj-desc">Fault-tolerant distributed video platform with adaptive <strong>MPEG-DASH streaming</strong>. Content storage uses <strong>gRPC with consistent hashing</strong> for scalable file distribution and seamless node migration. <strong>3-node etcd cluster on AWS EC2</strong> validates RAFT-based leader election under simulated failures.</p>
         </div>
-        <div class="proj-links"><a href="https://github.com/sriraksharao/triton-tube" class="proj-link" target="_blank" rel="noopener">GitHub ↗</a></div>
       </div></div>
     </div>
 
     <div class="proj-row">
       <div class="proj-head">
         <span class="proj-num">02</span>
-        <span class="proj-title">Corsarotrace Go Engine</span>
-        <div class="proj-chips-inline"><span class="pchip">Go</span><span class="pchip">Concurrency</span><span class="pchip">OpenStack</span></div>
+        <span class="proj-title">AI Fitness Platform</span>
+        <div class="proj-chips-inline"><span class="pchip">Spring Boot</span><span class="pchip">Kafka</span><span class="pchip">React</span></div>
+        <a class="proj-gh" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
         <span class="proj-arr">↗</span>
       </div>
       <div class="proj-body"><div class="proj-body-inner">
         <div>
-          <p class="proj-meta">Network Systems · 2026 · CAIDA, SDSC</p>
-          <p class="proj-desc">Re-architected the corsarotrace packet analysis engine from legacy C to production-grade Go, hitting 1M+ packets/sec with deep concurrency. Ingestion pipelines pull captures from OpenStack Swift and extract network features and communication statistics at scale.</p>
+          <p class="proj-meta">Full Stack · Microservices</p>
+          <p class="proj-desc">Microservices fitness platform using <strong>Netflix Eureka</strong> for service discovery and <strong>Spring Cloud Gateway</strong> for routing. <strong>Apache Kafka</strong> for async event-driven communication. <strong>Keycloak OAuth 2.0</strong> for identity management, enabling real-time AI-driven workout recommendations.</p>
         </div>
-        <div class="proj-links"><a href="#" class="proj-link">GitHub ↗</a></div>
       </div></div>
     </div>
 
     <div class="proj-row">
       <div class="proj-head">
         <span class="proj-num">03</span>
-        <span class="proj-title">AI Insurance Assistant</span>
-        <div class="proj-chips-inline"><span class="pchip">LangGraph</span><span class="pchip">RAG</span><span class="pchip">Pinecone</span></div>
+        <span class="proj-title">Speculative Decoding</span>
+        <div class="proj-chips-inline"><span class="pchip">Python</span><span class="pchip">PyTorch</span><span class="pchip">LLMs</span></div>
+        <a class="proj-gh" href="https://github.com/sriraksharao/speculative-decoding" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
         <span class="proj-arr">↗</span>
       </div>
       <div class="proj-body"><div class="proj-body-inner">
         <div>
-          <p class="proj-meta">Conversational AI · 2026 · Relevance Labs</p>
-          <p class="proj-desc">Intent-driven LangGraph agent pipeline that classifies requests and routes to SQL lookups, semantic vector retrieval, analytics, or guided workflows. RAG system embeds policy documents into Pinecone. JWT auth, stateful session management, and full chat history persistence.</p>
+          <p class="proj-meta">LLM Inference · AI Systems</p>
+          <p class="proj-desc">Implemented <strong>speculative decoding</strong> for accelerated LLM inference — a smaller <strong>draft model</strong> generates candidate token sequences that a larger <strong>target model verifies in parallel</strong>, significantly reducing per-token latency while maintaining output quality identical to greedy decoding from the full model.</p>
         </div>
-        <div class="proj-links"><a href="#" class="proj-link">GitHub ↗</a></div>
       </div></div>
     </div>
 
     <div class="proj-row">
       <div class="proj-head">
         <span class="proj-num">04</span>
-        <span class="proj-title">ICU Mortality Prediction</span>
-        <div class="proj-chips-inline"><span class="pchip">BioBERT</span><span class="pchip">LSTM</span><span class="pchip">MIMIC-III</span></div>
+        <span class="proj-title">AI Insurance Assistant</span>
+        <div class="proj-chips-inline"><span class="pchip">LangGraph</span><span class="pchip">RAG</span><span class="pchip">Pinecone</span></div>
+        <a class="proj-gh" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
         <span class="proj-arr">↗</span>
       </div>
       <div class="proj-body"><div class="proj-body-inner">
         <div>
-          <p class="proj-meta">Clinical NLP · 2025 · UCSD Health</p>
-          <p class="proj-desc">Predicted ICU patient mortality from clinical notes of 60,000 ICU stays using the MIMIC-III dataset. GloVe and BERT embeddings for medical text preprocessing. Trained and fine-tuned Logistic Regression, LSTM, and bio-BERT models for early mortality risk stratification.</p>
+          <p class="proj-meta">Conversational AI · 2026 · Relevance Labs</p>
+          <p class="proj-desc"><strong>Intent-driven LangGraph agent pipeline</strong> that classifies requests and routes to SQL lookups, semantic vector retrieval, analytics, or guided workflows. <strong>RAG system</strong> embeds policy documents into Pinecone. JWT auth, stateful session management, and full chat history persistence.</p>
         </div>
-        <div class="proj-links"><a href="#" class="proj-link">GitHub ↗</a></div>
       </div></div>
     </div>
 
@@ -797,46 +819,46 @@ footer p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; 
         <span class="proj-num">05</span>
         <span class="proj-title">Misinformation Spread — Causal Inference</span>
         <div class="proj-chips-inline"><span class="pchip">Python</span><span class="pchip">Causal Inference</span><span class="pchip">NLP</span></div>
+        <a class="proj-gh" href="https://github.com/sriraksharao/misinformation-spread---causal-inference" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
         <span class="proj-arr">↗</span>
       </div>
       <div class="proj-body"><div class="proj-body-inner">
         <div>
           <p class="proj-meta">Causal AI · Data Science</p>
-          <p class="proj-desc">Investigated causal mechanisms behind misinformation propagation using observational data analysis and causal inference frameworks. Applied causal graphs (DAGs), propensity score methods, and statistical analysis to isolate confounders and establish causality in how false information spreads across networks.</p>
+          <p class="proj-desc">Investigated causal mechanisms behind misinformation propagation using observational data analysis and <strong>causal inference frameworks</strong>. Applied <strong>causal graphs (DAGs)</strong>, propensity score methods, and statistical analysis to isolate confounders and establish causality in how false information spreads across networks.</p>
         </div>
-        <div class="proj-links"><a href="https://github.com/sriraksharao/misinformation-spread---causal-inference" class="proj-link" target="_blank" rel="noopener">GitHub ↗</a></div>
       </div></div>
     </div>
 
     <div class="proj-row">
       <div class="proj-head">
         <span class="proj-num">06</span>
-        <span class="proj-title">BioBERT Relation Extraction</span>
-        <div class="proj-chips-inline"><span class="pchip">BioBERT</span><span class="pchip">PyTorch DDP</span><span class="pchip">NLP</span></div>
+        <span class="proj-title">ICU Mortality Prediction</span>
+        <div class="proj-chips-inline"><span class="pchip">BioBERT</span><span class="pchip">LSTM</span><span class="pchip">MIMIC-III</span></div>
+        <a class="proj-gh" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
         <span class="proj-arr">↗</span>
       </div>
       <div class="proj-body"><div class="proj-body-inner">
         <div>
-          <p class="proj-meta">Biomedical AI · 2025 · Scale AI</p>
-          <p class="proj-desc">End-to-end biomedical relation extraction pipeline (ChemProt / DrugProt) using BioBERT + MLP for chemical–gene classification. Preprocessing, negative sample generation, CPR label mapping. Scaled to multi-GPU with PyTorch DDP, warmup/decay LR, checkpointing, and BRAT export.</p>
+          <p class="proj-meta">Clinical NLP · 2025 · UCSD Health</p>
+          <p class="proj-desc">Predicted <strong>ICU patient mortality</strong> from clinical notes of <strong>60,000 ICU stays</strong> using the MIMIC-III dataset. <strong>GloVe and BERT embeddings</strong> for medical text preprocessing. Trained and fine-tuned <strong>Logistic Regression, LSTM, and bio-BERT</strong> models for early mortality risk stratification.</p>
         </div>
-        <div class="proj-links"><a href="#" class="proj-link">GitHub ↗</a></div>
       </div></div>
     </div>
 
     <div class="proj-row">
       <div class="proj-head">
         <span class="proj-num">07</span>
-        <span class="proj-title">AI Fitness Platform</span>
-        <div class="proj-chips-inline"><span class="pchip">Spring Boot</span><span class="pchip">Kafka</span><span class="pchip">React</span></div>
+        <span class="proj-title">BioBERT Relation Extraction</span>
+        <div class="proj-chips-inline"><span class="pchip">BioBERT</span><span class="pchip">PyTorch DDP</span><span class="pchip">NLP</span></div>
+        <a class="proj-gh" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
         <span class="proj-arr">↗</span>
       </div>
       <div class="proj-body"><div class="proj-body-inner">
         <div>
-          <p class="proj-meta">Full Stack · Microservices</p>
-          <p class="proj-desc">Microservices fitness platform using Netflix Eureka for service discovery and Spring Cloud Gateway for routing. Apache Kafka for async event-driven communication. Keycloak OAuth 2.0 for identity management, enabling real-time AI-driven workout recommendations based on user activity.</p>
+          <p class="proj-meta">Biomedical AI · 2025 · Scale AI</p>
+          <p class="proj-desc">End-to-end <strong>biomedical relation extraction pipeline</strong> (ChemProt / DrugProt) using <strong>BioBERT + MLP</strong> for chemical–gene classification. Preprocessing, negative sample generation, CPR label mapping. Scaled to multi-GPU with <strong>PyTorch DDP</strong>, warmup/decay LR, checkpointing, and BRAT export.</p>
         </div>
-        <div class="proj-links"><a href="#" class="proj-link">GitHub ↗</a></div>
       </div></div>
     </div>
 
