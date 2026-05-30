@@ -125,18 +125,18 @@ html[data-theme="light"] .theme-btn .ic-moon { display: none; }
   font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--acc); margin-bottom: 24px;
 }
-.hero-name-wrap { overflow: hidden; }
+.hero-name-wrap { }
 .hero-name {
   font-family: var(--f-serif);
   font-size: clamp(60px, 10.5vw, 144px);
-  font-weight: 300; letter-spacing: -0.03em; line-height: 0.9;
+  font-weight: 300; letter-spacing: -0.03em; line-height: 0.92;
   color: var(--text); display: block;
-  transform: translateY(110%);
-  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translateY(24px);
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
 }
 #hn1 { transition-delay: 0.1s; }
-#hn2 { transition-delay: 0.22s; color: var(--acc); font-style: italic; }
-.hero-name.show { transform: translateY(0); }
+#hn2 { transition-delay: 0.22s; color: var(--acc); font-style: italic; -webkit-font-smoothing: antialiased; font-variation-settings: 'opsz' 144; }
+.hero-name.show { opacity: 1; transform: translateY(0); }
 .hero-bottom {
   padding-bottom: 20px; border-top: 1px solid var(--bdr); padding-top: 20px;
   display: grid; grid-template-columns: 1fr 1fr 1fr;
